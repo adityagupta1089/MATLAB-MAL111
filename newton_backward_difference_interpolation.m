@@ -16,11 +16,11 @@ for i=2:n+1
     end
 end
 f=g(x0);
-for i=1:n
+for i=1:n-1
     y=1;
     for j=1:i
-        y=y*(u-(j-1))/j;
+        y=y*(u+j-1)/j;
     end    
-    f=f+y*delta(i+1,i+1);
+    f=f+y*delta(i+1,n);
 end
 fprintf('f(%f) = %f\n',z,f);

@@ -1,1 +1,0 @@
-In Assignment Question 5 (b) 1<=x<=2 should be 0<=x<=2

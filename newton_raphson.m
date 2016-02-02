@@ -1,10 +1,15 @@
-clc
-clear all
-f=inline('x-tan(x)');
-g=inline('1-(sec(x))^2');
-x=1.5;
-p=1e-10;
+function root = newton_raphson(f,g,x,p)
+%sample input : newton_raphson(inline('x-tan(x)'),inline('1-(sec(x))^2'),1.5,1e-10)
+%sample output: 5.5719e-04
+%f-> function
+%g->differentiated function
+%x->initial root
+%p-.precision
+% while value of f(x)-f(a) is greater than precision we will loop
+% where a is the root so f(a)=0 hence we take abs(f(x))
 while abs(f(x))>=p
+    %using x(n)=x(n-1)-f(x(n-1))/f'(x(n-1))
     x=x-f(x)/g(x);
 end
-fprintf(['Root is %1.',num2str(-log(p)/log(10)),'f...\n'],x);
+root =x;
+end

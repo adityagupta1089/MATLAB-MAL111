@@ -7,10 +7,10 @@ function root = fixed_point(f,x,T,N)
 % T -> error tolerance
 % N -> max iterations
 n=0;
-while n<=N
-    x=f(x);
-    n=n+1;
-    if abs(f(x)-x)<=T
+while n<=N% while less than max iterations
+    x=f(x);%iterate x(n)=f(x(n-1))
+    n=n+1;%increase number of iteration counter
+    if abs(f(x)-x)<=T % root found
         root=x;
         break
     end

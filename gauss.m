@@ -7,7 +7,7 @@ function sol = gauss(A)
 %   -1.0000
 [r,c]=size(A);
 % sin -> whether the matrix is singular(sin=1) or non-singular(sin=0)
-sin=0;
+singular=false;
 for i=1:r
     % finding the i-th pivot:
     % partial pivoting:
@@ -26,7 +26,7 @@ for i=1:r
     end
     if A(i,i)==0
         % matrix is singular
-        sin=1;
+        singular=true;
     end
     % do for all remaining elements in current row
     for j=i+1:r
@@ -35,7 +35,7 @@ for i=1:r
     end
 end
 % if matrix is non-singular
-if sin==0
+if singular==false
     sol=zeros(r,1);% solution array
     % backward susbstitution
     for i=r:-1:1

@@ -4,10 +4,10 @@ j=1;
 for i=1:r
     while A(i,j)==0
         imax=i;     %index of the element with maximum value
-        max=A(i,i); %value of that element
+        max=A(i,j); %value of that element
         for k=i+1:r % finding the max
-            if abs(A(k,i))>abs(max)
-                max=A(k,i);
+            if abs(A(k,j))>abs(max)
+                max=A(k,j);
                 imax=k;
             end
         end

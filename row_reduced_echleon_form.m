@@ -1,20 +1,26 @@
 function sol = row_reduced_echleon_form(A)
 [r,c]=size(A);
 j=1;
+tol=1e-10;
 for i=1:r
-    while abs(A(i,j))<1e-5 || j<=c
+    while abs(A(i,j))<tol
         % is it zero or j < columns
         imax=i;     %index of the element with maximum value
-        max=A(i,j); %value of that element
+        maxe=A(i,j); %value of that element
         for k=i+1:r % finding the max
-            if abs(A(k,j))>abs(max)
-                max=A(k,j);
+            if abs(A(k,j))>abs(maxe)
+                maxe=A(k,j);
                 imax=k;
             end
         end
-        A([i,imax],:)=A([imax,i],:); %swap the rows
-        if abs(A(i,j))<1e-5% is it zero
+        if maxe<1e-5% is it zero
             j=j+1;
+        else
+            A([i,imax],:)=A([imax,i],:); %swap the rows
+        end
+        if j>c
+            sol=A;
+            return;
         end
     end
     A(i,:)=A(i,:)/A(i,j);

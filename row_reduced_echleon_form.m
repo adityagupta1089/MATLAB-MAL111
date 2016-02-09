@@ -1,7 +1,9 @@
 function sol = row_reduced_echleon_form(A)
 [r,c]=size(A);
 j=1;
-tol=1e-10;
+tol=abs(min(A)/(2*max(A))); 
+% The minimum entry after row reduced echleon form should be less than min/max,
+% but to make sure i divided by 2, also it should be positive
 for i=1:r
     while abs(A(i,j))<tol
         % is it zero or j < columns
@@ -19,7 +21,7 @@ for i=1:r
             A([i,imax],:)=A([imax,i],:); %swap the rows
         end
         if j>c
-            sol=A;
+            sol=non_negligible(A,tol);
             return;
         end
     end
@@ -36,5 +38,5 @@ for i=1:r
         break;
     end
 end
-sol=A;
+sol=non_negligible(A,tol);
 end

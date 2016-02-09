@@ -1,4 +1,4 @@
-function non_negligible( A,tol )
+function A=non_negligible( A,tol )
 [r,c]=size(A);
 for i=1:r
     for j=1:c

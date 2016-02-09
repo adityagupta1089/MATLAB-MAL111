@@ -1,7 +1,7 @@
 function sol = row_reduced_echleon_form(A)
 [r,c]=size(A);
 j=1;
-tol=abs(min(A)/(2*max(A))); 
+tol=abs(min(A)/(100*max(A))); 
 % The minimum entry after row reduced echleon form should be less than min/max,
 % but to make sure i divided by 2, also it should be positive
 for i=1:r
@@ -15,7 +15,7 @@ for i=1:r
                 imax=k;
             end
         end
-        if maxe<1e-5% is it zero
+        if abs(maxe)<tol% is it zero
             j=j+1;
         else
             A([i,imax],:)=A([imax,i],:); %swap the rows

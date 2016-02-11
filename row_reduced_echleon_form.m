@@ -1,13 +1,24 @@
 function sol = row_reduced_echleon_form(A)
 [r,c]=size(A);
 j=1;
-tol=abs(min(A(A>0))/(100*max(A(A>0)));
-if max(A)==0
-	sol=A;
-	return;
+max=A(1,1);
+min=A(1,1);
+for ii=1:r
+    for jj=1:c
+        if abs(A(ii,j))>abs(max) &&A(ii,jj)~=0
+            max=A(ii,jj);
+        end
+        if abs(A(ii,jj))<abs(min) && A(ii,jj)~=0
+            min=A(ii,jj);
+        end
+    end
 end
-% The minimum entry after row reduced echleon form should be less than min/max,
-% but to make sure i divided by 100, also it should be positive
+if min==0&&max==0
+    sol=A;
+    return;
+end
+tol=abs(min)/abs(100*max);
+% The minimum entry after row reduced echleon form should be less than min/max
 for i=1:r
     while abs(A(i,j))<tol
         % is it zero or j < columns

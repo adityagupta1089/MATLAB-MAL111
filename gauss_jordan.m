@@ -5,7 +5,7 @@ function sol = gauss_jordan(A)
 %    2.0000
 %    3.0000
 %   -1.0000
-[,c]=size(A);
+[r,c]=size(A);
 A=row_reduced_echleon_form(A);
 sol=A(:,c); % save values of solution
 end

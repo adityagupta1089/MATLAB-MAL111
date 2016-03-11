@@ -49,5 +49,5 @@ for i=r:-1:1
     end
 end
 % now matrix has become [I|A], so we take the right side.
-mat=A(:,[c+1:2*c]);
+mat=A(:,c+1:2*c);
 end

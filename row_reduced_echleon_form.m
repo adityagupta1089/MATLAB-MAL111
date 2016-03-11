@@ -1,24 +1,7 @@
 function sol = row_reduced_echleon_form(A)
 [r,c]=size(A);
 j=1;
-max=A(1,1);
-min=A(1,1);
-for ii=1:r
-    for jj=1:c
-        if abs(A(ii,j))>abs(max) &&A(ii,jj)~=0
-            max=A(ii,jj);
-        end
-        if abs(A(ii,jj))<abs(min) && A(ii,jj)~=0
-            min=A(ii,jj);
-        end
-    end
-end
-if min==0&&max==0
-    sol=A;
-    return;
-end
-tol=abs(min)/abs(100*max);
-% The minimum entry after row reduced echleon form should be less than min/max
+tol=1e-10;
 for i=1:r
     while abs(A(i,j))<tol
         % is it zero or j < columns
@@ -40,8 +23,7 @@ for i=1:r
             return;
         end
     end
-    A(i,:)=A(i,:)/A(i,j);
-    % do for all remaining elements in current row
+    A(i,:)=A(i,:)/A(i,j);    % do for all remaining elements in current row
     for k=1:r
         if k~=i
             A(k,:)=A(k,:)-A(i,:)*A(k,j);

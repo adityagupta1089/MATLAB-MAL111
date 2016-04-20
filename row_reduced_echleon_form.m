@@ -35,5 +35,12 @@ for i=1:r
         break;
     end
 end
-sol=non_negligible(A,tol);
+for i=1:r
+    for j=1:c
+        if abs(A(i,j))<tol
+            A(i,j)=0;
+        end
+    end
+end
+sol=A;
 end
